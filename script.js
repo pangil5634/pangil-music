@@ -56,6 +56,7 @@ const globalSpeedSelect = document.getElementById("globalSpeedSelect");
 const referenceModal = document.getElementById("referenceModal");
 const closeModalButton = document.getElementById("closeModalButton");
 const hideModalToggle = document.getElementById("hideModalToggle");
+const referenceEmbed = document.querySelector(".modal-embed");
 
 const activeMedia = new Map();
 const currentSequence = [];
@@ -64,6 +65,7 @@ const MODAL_HIDE_KEY = "pangil_hide_reference_modal_v1";
 const GLOBAL_SPEED_KEY = "pangil_global_speed_v1";
 const ALLOWED_SPEEDS = [1, 1.5, 2];
 let combos = loadCombos();
+const REFERENCE_EMBED_SRC = "https://www.instagram.com/reel/DWFip86CQ9k/embed";
 
 function trackEvent(eventName, params = {}) {
   if (typeof window.gtag !== "function") return;
@@ -354,6 +356,9 @@ globalSpeedSelect.addEventListener("change", () => {
 });
 
 function openReferenceModal() {
+  if (referenceEmbed && !referenceEmbed.src) {
+    referenceEmbed.src = REFERENCE_EMBED_SRC;
+  }
   referenceModal.hidden = false;
 }
 
@@ -362,6 +367,9 @@ function closeReferenceModal() {
     localStorage.setItem(MODAL_HIDE_KEY, "1");
   }
   referenceModal.hidden = true;
+  if (referenceEmbed) {
+    referenceEmbed.src = "";
+  }
 }
 
 function initializeReferenceModal() {
