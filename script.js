@@ -65,6 +65,11 @@ const GLOBAL_SPEED_KEY = "pangil_global_speed_v1";
 const ALLOWED_SPEEDS = [1, 1.5, 2];
 let combos = loadCombos();
 
+function trackEvent(eventName, params = {}) {
+  if (typeof window.gtag !== "function") return;
+  window.gtag("event", eventName, params);
+}
+
 function loadCombos() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -100,6 +105,8 @@ function playSingleEffect(file, button) {
   media.play().catch((err) => {
     console.error(`Failed to play ${src}`, err);
   });
+
+  trackEvent("play_sound", { file });
 }
 
 function playOneAndWait(file, speed) {
@@ -288,6 +295,11 @@ function renderComboList() {
     playBtn.addEventListener("click", () => {
       const speed = getComboSpeed(combo);
       playComboSequence(combo.files, speed);
+      trackEvent("play_combo", {
+        combo_name: combo.name,
+        sound_count: combo.files.length,
+        speed,
+      });
     });
 
     const delBtn = document.createElement("button");
@@ -324,6 +336,11 @@ function saveCombo() {
   });
 
   saveCombos();
+  trackEvent("save_combo", {
+    combo_name: name,
+    sound_count: currentSequence.length,
+    speed: loadGlobalSpeed(),
+  });
   comboNameInput.value = "";
   currentSequence.length = 0;
   renderSequenceList();
