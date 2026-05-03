@@ -1,7 +1,7 @@
 :root {
   --bg: #ececec;
   --text: #1e1e1e;
-  --btn-size: 120px;
+  --btn-size: 84px;
 }
 
 * {
@@ -357,6 +357,15 @@ body {
 
 @media (max-width: 480px) {
   :root {
-    --btn-size: 102px;
+    --btn-size: 71px;
+  }
+
+  .sound-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px 8px;
+  }
+
+  .sound-label {
+    font-size: 0.9rem;
   }
 }
