@@ -13,6 +13,18 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <div class="reference-cta" role="region" aria-label="original reel link">
+      <p class="reference-cta-text">원본 릴스 동선 참고하고 콤보를 만들어보세요.</p>
+      <a
+        class="reference-cta-link"
+        href="https://www.instagram.com/reel/DWFip86CQ9k/?igsh=MTBlYWxzeGxwMGxzMg=="
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        원본 릴스 보기
+      </a>
+    </div>
+
     <section class="sound-section" aria-label="effect sound board">
       <h2 class="sound-title">한로로 - 0+0 강남스타일 리믹스 런치패드</h2>
       <div>
@@ -27,6 +39,59 @@
       </div>
       <div class="sound-grid" id="soundGrid"></div>
     </section>
+
+    <section class="sound-section" aria-label="meme combo maker">
+      <h2 class="sound-title">나만의 밈 콤보 만들기</h2>
+      <div class="combo-builder">
+        <input id="comboName" class="combo-input" type="text" maxlength="24" placeholder="콤보 이름 (예: 출근 5초전)" />
+        <div id="comboSourceGrid" class="mini-grid"></div>
+        <div id="sequenceList" class="sequence-list"></div>
+        <button id="saveComboButton" class="combo-save-button" type="button">콤보 저장</button>
+      </div>
+      <div>
+        <h3 class="combo-subtitle">저장된 콤보</h3>
+        <div class="speed-controls">
+          <label for="globalSpeedSelect">기본 배속</label>
+          <select id="globalSpeedSelect" class="speed-select">
+            <option value="1">x1</option>
+            <option value="1.5">x1.5</option>
+            <option value="2">x2</option>
+          </select>
+        </div>
+        <div id="comboList" class="combo-list"></div>
+      </div>
+    </section>
+
+    <div id="referenceModal" class="modal-backdrop" hidden>
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="referenceModalTitle">
+        <h3 id="referenceModalTitle" class="modal-title">원본 릴스 참고</h3>
+        <p class="modal-text">아래에서 원본 릴스를 바로 확인해보세요.</p>
+        <div class="modal-embed-wrap">
+          <iframe
+            class="modal-embed"
+            src="https://www.instagram.com/reel/DWFip86CQ9k/embed"
+            title="Instagram Reel Reference"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="modal-actions">
+          <a
+            class="modal-open-link"
+            href="https://www.instagram.com/reel/DWFip86CQ9k/?igsh=MTBlYWxzeGxwMGxzMg=="
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            원본 릴스 열기
+          </a>
+          <button id="closeModalButton" class="modal-close-button" type="button">닫기</button>
+        </div>
+        <label class="modal-checkbox">
+          <input id="hideModalToggle" type="checkbox" />
+          다시 보지 않기
+        </label>
+      </div>
+    </div>
 
     <script src="./script.js"></script>
   </body>
